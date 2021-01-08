@@ -41,10 +41,8 @@ public class EnterScreenController {
             return;
         }
 
-        DatabaseHandler dbHandler = new DatabaseHandler();
-
         if (checkBoxIsAdmin.isSelected()) {
-            Admin admin = dbHandler.getAdmin(login, password);
+            Admin admin = DatabaseHandler.getAdmin(login, password);
             if (admin == null) {
                 System.out.println("Admin not found");
                 return;
@@ -56,7 +54,7 @@ public class EnterScreenController {
         }
 
         if (checkBoxIsDoctor.isSelected()) {
-            Doctor doctor = dbHandler.getDoctor(login, password);
+            Doctor doctor = DatabaseHandler.getDoctor(login, password);
             if (doctor == null) {
                 System.out.println("Doctor not found");
                 return;
@@ -66,7 +64,7 @@ public class EnterScreenController {
         }
 
         if (checkBoxIsPatient.isSelected()) {
-            Patient patient = dbHandler.getPatient(login, password);
+            Patient patient = DatabaseHandler.getPatient(login, password);
             if (patient == null) {
                 System.out.println("Patient not found");
                 return;

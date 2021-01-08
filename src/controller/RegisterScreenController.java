@@ -10,15 +10,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import models.Admin;
+import models.Doctor;
+import models.Patient;
 import utils.Utils;
 
 public class RegisterScreenController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button buttonRegister;
@@ -42,19 +39,33 @@ public class RegisterScreenController {
     private CheckBox checkBoxIsDoctor;
 
     public void onButtonRegisterClick(ActionEvent actionEvent) {
-        String post = "";
+        String login = textFieldLogin.getText();
+        String name = textFieldName.getText();
+        String password = textFieldPassword.getText();
+
+        // CHECK DATA
+
         if (checkBoxIsAdmin.isSelected()) {
-            post = "admin";
+            Admin a = new Admin();
+            a.setLogin(login);
+            a.setName(name);
+            a.setPass(password);
+            DatabaseHandler.addAdmin(a);
         } else if (checkBoxIsPatient.isSelected()) {
-            post = "patient";
+            Patient p = new Patient();
+
+            // TODO: FILL DATA
+
+            DatabaseHandler.addPatient(p);
         } else if (checkBoxIsDoctor.isSelected()) {
-            post = "doctor";
+            Doctor d = new Doctor();
+
+            // TODO: FILL DATA
+
+            DatabaseHandler.addDoctor(d);
         }
 
-
-        DatabaseHandler dbHandler = new DatabaseHandler();
-        dbHandler.SingUpUser(textFieldName.getText(), textFieldLogin.getText(), textFieldPassword.getText(), post);
-
         Utils.alertAndWait("Успех", "Операция выполнена", "Регистрация прошла успешно");
+        Utils.backScreen();
     }
 }

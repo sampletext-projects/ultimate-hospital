@@ -1,13 +1,17 @@
 package controller;
 
+import database.DatabaseHandler;
 import javafx.beans.property.SimpleStringProperty;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import models.Doctor;
+
+import java.util.List;
 
 
 public class ShowDoctorsScreenController {
@@ -68,5 +72,10 @@ public class ShowDoctorsScreenController {
         pass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPass()));
         time.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
         data.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
+
+        List<Doctor> doctors = DatabaseHandler.getDoctors();
+
+        tableViewDoctors.setItems(FXCollections.observableArrayList(doctors));
+        tableViewDoctors.refresh();
     }
 }
