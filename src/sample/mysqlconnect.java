@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import models.User;
+
 import javax.swing.JOptionPane;
 
 public class mysqlconnect {

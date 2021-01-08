@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.ComboBox?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="700.0" style="-fx-background-color: #6699FF;" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterScreenController">
+    <children>
+        <TextField fx:id="textFieldName" layoutX="59.0" layoutY="33.0" prefHeight="31.0" prefWidth="570.0"
+                   promptText="Имя"/>
+        <TextField fx:id="textFieldLogin" layoutX="59.0" layoutY="80.0" prefHeight="31.0" prefWidth="570.0"
+                   promptText="Логин"/>
+        <TextField fx:id="textFieldPassword" layoutX="59.0" layoutY="131.0" prefHeight="31.0" prefWidth="570.0"
+                   promptText="Пароль"/>
+
+
+        <!--        <ComboBox fx:id="comboBoxRole" prefWidth="150" value="">-->
+        <!--            <items>-->
+        <!--                <FXCollections fx:factory="observableArrayList">-->
+        <!--                    <String fx:value="Админ"/>-->
+        <!--                    <String fx:value="Пациент"/>-->
+        <!--                    <String fx:value="Врач"/>-->
+        <!--                </FXCollections>-->
+        <!--            </items>-->
+        <!--        </ComboBox>-->
+
+        <CheckBox fx:id="checkBoxIsAdmin" layoutX="59.0" layoutY="190.0" mnemonicParsing="false" text="Администратор"/>
+        <CheckBox fx:id="checkBoxIsPatient" layoutX="360.0" layoutY="190.0" mnemonicParsing="false" prefHeight="21.0"
+                  prefWidth="112.0" text="Пациент"/>
+        <CheckBox fx:id="checkBoxIsDoctor" layoutX="235.0" layoutY="190.0" mnemonicParsing="false" prefHeight="21.0"
+                  prefWidth="81.0" text="Врач"/>
+
+        <Button fx:id="signUpButton" layoutX="65.0" layoutY="282.0" mnemonicParsing="false" prefHeight="87.0"
+                prefWidth="570.0" text="Зарегистрироваться">
+            <font>
+                <Font size="41.0"/>
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

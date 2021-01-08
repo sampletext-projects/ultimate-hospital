@@ -14,15 +14,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import models.User;
 
 
-public class admin1 {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+public class AdminScreen1Controller {
 
     @FXML
     private TableView<User> doctor;

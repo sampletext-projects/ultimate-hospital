@@ -5,9 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class signup {
+public class RegisterScreenController {
 
     @FXML
     private ResourceBundle resources;
@@ -28,34 +25,34 @@ public class signup {
     private Button signUpButton;
 
     @FXML
-    private TextField signupname;
+    private TextField textFieldName;
 
     @FXML
-    private TextField signuplogin;
+    private TextField textFieldLogin;
 
     @FXML
-    private TextField signuppass;
+    private TextField textFieldPassword;
 
     @FXML
-    private CheckBox postadmin;
+    private CheckBox checkBoxIsAdmin;
 
     @FXML
-    private CheckBox postpatient;
+    private CheckBox checkBoxIsPatient;
 
     @FXML
-    private CheckBox postdoctor;
+    private CheckBox checkBoxIsDoctor;
 
     @FXML
     void initialize() {
         DatabaseHandler dbHandler = new DatabaseHandler();
         signUpButton.setOnAction(event -> {
             String post = "";
-            if(postadmin.isSelected()) post = "admin";
-            else if (!postpatient.isSelected()) {
-                if (postdoctor.isSelected()) post = "doctor";
+            if(checkBoxIsAdmin.isSelected()) post = "admin";
+            else if (!checkBoxIsPatient.isSelected()) {
+                if (checkBoxIsDoctor.isSelected()) post = "doctor";
             } else post = "patient";
 
-            dbHandler.SingUpUser(signupname.getText(), signuplogin.getText(), signuppass.getText(), post);
+            dbHandler.SingUpUser(textFieldName.getText(), textFieldLogin.getText(), textFieldPassword.getText(), post);
             signUpButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/sample/yes.fxml"));

@@ -1,9 +1,9 @@
 package sample;
 
 public class Configs {
-    protected String dbHost = "localhost";
-    protected String dbPort = "3306";
-    protected String dbUser = "root";
-    protected String dbPass = "295Lub77";
-    protected String dbName = "table1";
+    public static final String dbHost = "localhost";
+    public static final String dbPort = "3306";
+    public static final String dbUser = "root";
+    public static final String dbPass = "295Lub77";
+    public static final String dbName = "table1";
 }

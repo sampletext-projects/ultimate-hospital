@@ -1,36 +1,28 @@
 package sample;
 
-import java.net.URL;
+import models.Admin;
+import models.Doctor;
+import models.Patient;
+import models.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javax.swing.JOptionPane;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseHandler extends Configs{
+public class DatabaseHandler {
     Connection dbConnection;
 
-    public Connection getDbConnection()throws ClassNotFoundException, SQLException{
-        String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort +"/" + dbName;
+    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+        String connectionString = "jdbc:mysql://" + Configs.dbHost + ":" + Configs.dbPort + "/" + Configs.dbName;
         Class.forName("com.mysql.cj.jdbc.Driver");
-        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
+        dbConnection = DriverManager.getConnection(connectionString, Configs.dbUser, Configs.dbPass);
         return dbConnection;
     }
-    public void SingUpUser (String name, String login, String pass, String post){
+
+    public void SingUpUser(String name, String login, String pass, String post) {
         switch (post) {
             case "admin": {
                 String insert = "INSERT INTO " + Const.ADMIN_TABLE + "(" + Const.ADMIN_NAME + "," + Const.ADMIN_LOGIN + "," + Const.ADMIN_PASS + ")" + "VALUES(?,?,?)";
@@ -83,57 +75,73 @@ public class DatabaseHandler extends Configs{
             }
         }
     }
-    public ResultSet getUser (User user, String post) {
-        ResultSet resSet = null;
-        switch (post) {
-            case "admin": {
-                String select = "SELECT * FROM " + Const.ADMIN_TABLE + " WHERE " + Const.ADMIN_LOGIN + "=? AND " + Const.ADMIN_PASS + "=? ";
 
-                try {
-                    PreparedStatement prSt = getDbConnection().prepareStatement(select);
-                    prSt.setString(1, user.getLogin());
-                    prSt.setString(2, user.getPass());
-                    resSet = prSt.executeQuery();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+    public Admin getAdmin(String login, String password) {
+        String table = Const.ADMIN_TABLE;
+        String loginColumn = Const.ADMIN_LOGIN;
+        String passwordColumn = Const.ADMIN_PASS;
 
-                break;
+        String select = String.format("SELECT * FROM %s WHERE %s=? AND %s=? LIMIT 1", table, loginColumn, passwordColumn);
+
+        try {
+            PreparedStatement statement = getDbConnection().prepareStatement(select);
+            statement.setString(1, login);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Admin admin = new Admin();
+                admin.readFromResultSet(resultSet);
+                return admin;
             }
-            case "doctor": {
-                String select = "SELECT * FROM " + Const.DOCTOR_TABLE + " WHERE " + Const.DOCTOR_LOGIN + "=? AND " + Const.DOCTOR_PASS + "=? ";
-
-                try {
-                    PreparedStatement prSt = getDbConnection().prepareStatement(select);
-                    prSt.setString(1, user.getLogin());
-                    prSt.setString(2, user.getPass());
-                    resSet = prSt.executeQuery();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-            case "patient": {
-                String select = "SELECT * FROM " + Const.PATIENT_TABLE + " WHERE " + Const.PATIENT_LOGIN + "=? AND " + Const.PATIENT_PASS + "=? ";
-
-                try {
-                    PreparedStatement prSt = getDbConnection().prepareStatement(select);
-                    prSt.setString(1, user.getLogin());
-                    prSt.setString(2, user.getPass());
-                    resSet = prSt.executeQuery();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
         }
-        return resSet;
+        return null;
+    }
+
+    public Doctor getDoctor(String login, String password) {
+        String table = Const.DOCTOR_TABLE;
+        String loginColumn = Const.DOCTOR_LOGIN;
+        String passwordColumn = Const.DOCTOR_PASS;
+
+        String select = String.format("SELECT * FROM %s WHERE %s=? AND %s=? LIMIT 1", table, loginColumn, passwordColumn);
+
+        try {
+            PreparedStatement statement = getDbConnection().prepareStatement(select);
+            statement.setString(1, login);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Doctor doctor = new Doctor();
+                doctor.readFromResultSet(resultSet);
+                return doctor;
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public Patient getPatient(String login, String password) {
+        String table = Const.PATIENT_TABLE;
+        String loginColumn = Const.PATIENT_LOGIN;
+        String passwordColumn = Const.PATIENT_PASS;
+
+        String select = String.format("SELECT * FROM %s WHERE %s=? AND %s=? LIMIT 1", table, loginColumn, passwordColumn);
+
+        try {
+            PreparedStatement statement = getDbConnection().prepareStatement(select);
+            statement.setString(1, login);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Patient patient = new Patient();
+                patient.readFromResultSet(resultSet);
+                return patient;
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }

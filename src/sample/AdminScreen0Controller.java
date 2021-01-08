@@ -1,8 +1,5 @@
 package sample;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,13 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class admin {
+import java.io.IOException;
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+public class AdminScreen0Controller {
 
     @FXML
     private Button button1;
@@ -29,7 +22,7 @@ public class admin {
         button1.setOnAction(event -> {
             button1.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/admin1.fxml"));
+            loader.setLocation(getClass().getResource("/sample/AdminScreen1.fxml"));
 
             try {
                 loader.load();
