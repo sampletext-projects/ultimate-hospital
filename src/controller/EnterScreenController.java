@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import models.Admin;
 import models.Doctor;
 import models.Patient;
+import utils.Utils;
 
 public class EnterScreenController {
 
