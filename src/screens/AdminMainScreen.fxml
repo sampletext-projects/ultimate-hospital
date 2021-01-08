@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="700.0" style="-fx-background-color: #6699FF;" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminMainScreenController">
+    <children>
+        <Label layoutX="135.0" layoutY="45.0" text="Выберите действие:">
+            <font>
+                <Font size="47.0"/>
+            </font>
+        </Label>
+        <Button fx:id="buttonShowDoctors" layoutX="166.0" layoutY="137.0" mnemonicParsing="false"
+                onAction="#onButtonShowDoctorsClick" prefHeight="80.0" prefWidth="368.0" text="Просмотр врачей">
+            <font>
+                <Font size="37.0"/>
+            </font>
+        </Button>
+        <Button fx:id="buttonShowPatients" layoutX="166.0" layoutY="258.0" prefWidth="368.0" mnemonicParsing="false"
+                onAction="#onButtonShowPatientsClick" text="Просмотр пациентов">
+            <font>
+                <Font size="33.0"/>
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

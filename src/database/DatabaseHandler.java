@@ -1,9 +1,8 @@
-package sample;
+package database;
 
 import models.Admin;
 import models.Doctor;
 import models.Patient;
-import models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseHandler {
+
     Connection dbConnection;
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {

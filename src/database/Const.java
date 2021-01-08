@@ -1,4 +1,4 @@
-package sample;
+package database;
 
 public class Const {
     public static final String ADMIN_TABLE = "admin";

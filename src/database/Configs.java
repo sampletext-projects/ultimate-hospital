@@ -1,4 +1,4 @@
-package sample;
+package database;
 
 public class Configs {
     public static final String dbHost = "localhost";

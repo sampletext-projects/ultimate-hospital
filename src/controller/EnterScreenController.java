@@ -1,20 +1,15 @@
-package sample;
+package controller;
 
 
+import database.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import models.Admin;
 import models.Doctor;
 import models.Patient;
-
-import java.io.IOException;
 
 public class EnterScreenController {
 
@@ -55,15 +50,8 @@ public class EnterScreenController {
             }
 
             // Logined Admin
-            buttonEnter.getScene().getWindow().hide();
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/sample/AdminScreen0.fxml"));
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            Utils.loadScreen("AdminMainScreen");
         }
 
         if (checkBoxIsDoctor.isSelected()) {
@@ -85,6 +73,11 @@ public class EnterScreenController {
 
             // Logined Patient
         }
+    }
+
+
+    public void onButtonBackClick(ActionEvent actionEvent) {
+        Utils.backScreen();
     }
 }
 
