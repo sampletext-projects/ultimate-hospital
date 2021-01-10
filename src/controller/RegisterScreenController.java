@@ -53,15 +53,15 @@ public class RegisterScreenController {
             DatabaseHandler.addAdmin(a);
         } else if (checkBoxIsPatient.isSelected()) {
             Patient p = new Patient();
-
-            // TODO: FILL DATA
-
+            p.setLogin(login);
+            p.setName(name);
+            p.setPass(password);
             DatabaseHandler.addPatient(p);
         } else if (checkBoxIsDoctor.isSelected()) {
             Doctor d = new Doctor();
-
-            // TODO: FILL DATA
-
+            d.setLogin(login);
+            d.setName(name);
+            d.setPass(password);
             DatabaseHandler.addDoctor(d);
         }
 

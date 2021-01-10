@@ -4,6 +4,7 @@ import database.DatabaseHandler;
 import javafx.beans.property.SimpleStringProperty;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -72,6 +73,50 @@ public class ShowDoctorsScreenController {
         pass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPass()));
         time.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
         data.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
+
+        List<Doctor> doctors = DatabaseHandler.getDoctors();
+
+        tableViewDoctors.setItems(FXCollections.observableArrayList(doctors));
+        tableViewDoctors.refresh();
+    }
+
+    public void Add_doctors(ActionEvent actionEvent) {
+        String name = txt_name.getText();
+        String login = txt_login.getText();
+        String password = txt_pass.getText();
+        String data = txt_data.getText();
+        String time = txt_time.getText();
+        
+        Doctor d = new Doctor();
+        d.setLogin(login);
+        d.setName(name);
+        d.setPass(password);
+        d.setData(data);
+        d.setTime(time);
+        DatabaseHandler.addDoctors(d);
+
+        List<Doctor> doctors = DatabaseHandler.getDoctors();
+
+        tableViewDoctors.setItems(FXCollections.observableArrayList(doctors));
+        tableViewDoctors.refresh();
+    }
+
+    public void Delete_doctors(ActionEvent actionEvent) {
+        String id = txt_id.getText();
+        DatabaseHandler.removeDoctor(id);
+
+        List<Doctor> doctors = DatabaseHandler.getDoctors();
+
+        tableViewDoctors.setItems(FXCollections.observableArrayList(doctors));
+        tableViewDoctors.refresh();
+
+    }
+
+    public void Edit_doctors(ActionEvent actionEvent) {
+        String data = txt_data.getText();
+        String time = txt_time.getText();
+        String id = txt_id.getText();
+        DatabaseHandler.updateDoctor(data, time, id);
 
         List<Doctor> doctors = DatabaseHandler.getDoctors();
 

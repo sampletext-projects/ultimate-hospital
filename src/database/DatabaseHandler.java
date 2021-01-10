@@ -18,7 +18,7 @@ public class DatabaseHandler {
     private static Connection connection;
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
-        String connectionString = String.format("jdbc:mysql://%s:%s/%s", Configs.dbHost, Configs.dbPort, Configs.dbName);
+        String connectionString = String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", Configs.dbHost, Configs.dbPort, Configs.dbName);
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection(connectionString, Configs.dbUser, Configs.dbPass);
         return connection;
@@ -112,6 +112,25 @@ public class DatabaseHandler {
         return null;
     }
 
+    public static List<Patient> getPatients() {
+        String select = String.format("SELECT * FROM %s", Const.PATIENT_TABLE);
+
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(select);
+            ResultSet resultSet = statement.executeQuery();
+            List<Patient> patients = new ArrayList<>();
+            while (resultSet.next()) {
+                Patient patient = new Patient();
+                patient.readFromResultSet(resultSet);
+                patients.add(patient);
+            }
+            return patients;
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
     public static void addAdmin(Admin admin) {
         try {
             PreparedStatement statement = getConnection().prepareStatement(
@@ -157,11 +176,59 @@ public class DatabaseHandler {
         }
     }
 
-    public static void removePatient(Patient patient) {
+    public static void addPatients(Patient patient) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(
+                    String.format("INSERT INTO %s (%s, %s, %s, %s) VALUES (?,?,?,?)",
+                            Const.PATIENT_TABLE,
+                            Const.PATIENT_NAME,
+                            Const.PATIENT_LOGIN,
+                            Const.PATIENT_PASS,
+                            Const.PATIENT_NUMKART)
+            );
+            statement.setString(1, patient.getName());
+            statement.setString(2, patient.getLogin());
+            statement.setString(3, patient.getPass());
+            statement.setString(4, patient.getNumKart());
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void removePatient(String id) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("DELETE FROM patient WHERE id = ?");
+            statement.setString(1, id);
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 
-    public static void updatePatient(Patient patient) {
+    public static void updatePatient(String numKart, String id) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("UPDATE patient SET numKart = ? WHERE id = ?");
+            statement.setString(1, numKart);
+            statement.setString(2, id);
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    public static void updatePatients(String data, String time, String pass) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("UPDATE patient SET data = ?, time = ? WHERE pass = ?");
+            statement.setString(1, data);
+            statement.setString(2, time);
+            statement.setString(3, pass);
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 
@@ -182,12 +249,48 @@ public class DatabaseHandler {
             throwables.printStackTrace();
         }
     }
-
-    public static void removeDoctor(Doctor doctor) {
-
+    public static void addDoctors(Doctor doctor) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(
+                    String.format("INSERT INTO %s (%s, %s, %s, %s, %s) VALUES (?,?,?,?,?)",
+                            Const.DOCTOR_TABLE,
+                            Const.DOCTOR_NAME,
+                            Const.DOCTOR_LOGIN,
+                            Const.DOCTOR_PASS,
+                            Const.DOCTOR_TIME,
+                            Const.DOCTOR_DATA)
+            );
+            statement.setString(1, doctor.getName());
+            statement.setString(2, doctor.getLogin());
+            statement.setString(3, doctor.getPass());
+            statement.setString(4, doctor.getTime());
+            statement.setString(5, doctor.getData());
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    public static void updateDoctor(Doctor doctor) {
+    public static void removeDoctor(String id) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("DELETE FROM doctor WHERE id = ?");
+            statement.setString(1, id);
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void updateDoctor(String data, String time, String id) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement("UPDATE doctor SET data = ?, time = ? WHERE id = ?");
+            statement.setString(1, data);
+            statement.setString(2, time);
+            statement.setString(3, id);
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 }

@@ -27,19 +27,19 @@
                 <TableColumn fx:id="data" prefWidth="150.0" text="data"/>
             </columns>
         </TableView>
-        <Button fx:id="addbutton" layoutX="6.0" layoutY="64.0" mnemonicParsing="false" onAction="#Add_users"
+        <Button fx:id="addbutton" layoutX="6.0" layoutY="64.0" mnemonicParsing="false" onAction="#Add_doctors"
                 prefHeight="50.0" prefWidth="213.0" text="Добавить">
             <font>
                 <Font size="37.0"/>
             </font>
         </Button>
-        <Button fx:id="deletebutton" layoutX="6.0" layoutY="158.0" mnemonicParsing="false" onAction="#Delete"
+        <Button fx:id="deletebutton" layoutX="6.0" layoutY="158.0" mnemonicParsing="false" onAction="#Delete_doctors"
                 prefHeight="80.0" prefWidth="213.0" text="Удалить">
             <font>
                 <Font size="37.0"/>
             </font>
         </Button>
-        <Button fx:id="upbutton" layoutX="4.0" layoutY="248.0" mnemonicParsing="false" onAction="#Edit" text="Обновить">
+        <Button fx:id="upbutton" layoutX="4.0" layoutY="248.0" mnemonicParsing="false" onAction="#Edit_doctors" text="Обновить">
             <font>
                 <Font size="37.0"/>
             </font>

@@ -61,6 +61,8 @@ public class EnterScreenController {
             }
 
             // Logined Doctor
+
+            Utils.loadScreen("DoctorMainScreen");
         }
 
         if (checkBoxIsPatient.isSelected()) {
@@ -71,6 +73,8 @@ public class EnterScreenController {
             }
 
             // Logined Patient
+
+            Utils.loadScreen("PatientMainScreen");
         }
     }
 
