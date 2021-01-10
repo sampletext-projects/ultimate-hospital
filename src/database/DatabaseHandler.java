@@ -249,6 +249,7 @@ public class DatabaseHandler {
             throwables.printStackTrace();
         }
     }
+
     public static void addDoctors(Doctor doctor) {
         try {
             PreparedStatement statement = getConnection().prepareStatement(

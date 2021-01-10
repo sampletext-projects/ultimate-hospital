@@ -14,29 +14,29 @@ import java.util.List;
 
 public class DoctorMainScreenController {
 
-        @FXML
-        private TableView<Patient> tableViewTime;
+    @FXML
+    private TableView<Patient> tableViewTime;
 
-        @FXML
-        private TableColumn<Patient, String> name;
+    @FXML
+    private TableColumn<Patient, String> name;
 
-        @FXML
-        private TableColumn<Patient, String> card;
+    @FXML
+    private TableColumn<Patient, String> card;
 
-        @FXML
-        private TableColumn<Patient, String> time;
+    @FXML
+    private TableColumn<Patient, String> time;
 
-        @FXML
-        private TableColumn<Patient, String> data;
+    @FXML
+    private TableColumn<Patient, String> data;
 
-        @FXML
-        private TextArea textAreaCard;
+    @FXML
+    private TextArea textAreaCard;
 
-        @FXML
-        private Button seeButton;
+    @FXML
+    private Button seeButton;
 
-        @FXML
-        private Button saveButton;
+    @FXML
+    private Button saveButton;
 
     @FXML
     public void initialize() {

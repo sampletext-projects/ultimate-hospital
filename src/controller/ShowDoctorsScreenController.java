@@ -86,7 +86,7 @@ public class ShowDoctorsScreenController {
         String password = txt_pass.getText();
         String data = txt_data.getText();
         String time = txt_time.getText();
-        
+
         Doctor d = new Doctor();
         d.setLogin(login);
         d.setName(name);

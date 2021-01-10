@@ -16,35 +16,35 @@ import java.util.List;
 
 public class PatientMainScreenController {
 
-        @FXML
-        private TableView<Doctor> tableViewDoctors;
+    @FXML
+    private TableView<Doctor> tableViewDoctors;
 
-        @FXML
-        private TableColumn<Doctor, String> name;
+    @FXML
+    private TableColumn<Doctor, String> name;
 
-        @FXML
-        private TableColumn<Doctor, String> data;
+    @FXML
+    private TableColumn<Doctor, String> data;
 
-        @FXML
-        private TableColumn<Doctor, String> time;
+    @FXML
+    private TableColumn<Doctor, String> time;
 
-        @FXML
-        private TextField textFieldData;
+    @FXML
+    private TextField textFieldData;
 
-        @FXML
-        private TextField textFieldTime;
+    @FXML
+    private TextField textFieldTime;
 
-        @FXML
-        private Button UpButton;
+    @FXML
+    private Button UpButton;
 
-        @FXML
-        private Button cardButton;
+    @FXML
+    private Button cardButton;
 
-        @FXML
-        private TextArea textAreaCard;
+    @FXML
+    private TextArea textAreaCard;
 
-        @FXML
-        private TextField textFieldPass;
+    @FXML
+    private TextField textFieldPass;
 
     @FXML
     public void initialize() {
@@ -58,17 +58,17 @@ public class PatientMainScreenController {
         tableViewDoctors.refresh();
     }
 
-        public void Up_Me(ActionEvent actionEvent) {
-            String password = textFieldPass.getText();
-            String data = textFieldData.getText();
-            String time = textFieldTime.getText();
-            DatabaseHandler.updatePatients(data, time, password);
+    public void Up_Me(ActionEvent actionEvent) {
+        String password = textFieldPass.getText();
+        String data = textFieldData.getText();
+        String time = textFieldTime.getText();
+        DatabaseHandler.updatePatients(data, time, password);
 
-        }
+    }
 
 
     public void Open(ActionEvent actionEvent) {
-        
+
     }
 }
 
