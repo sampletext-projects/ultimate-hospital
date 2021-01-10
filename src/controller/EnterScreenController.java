@@ -52,8 +52,7 @@ public class EnterScreenController {
 
             Utils.loadScreen("AdminMainScreen");
         }
-
-        if (checkBoxIsDoctor.isSelected()) {
+        else if (checkBoxIsDoctor.isSelected()) {
             Doctor doctor = DatabaseHandler.getDoctor(login, password);
             if (doctor == null) {
                 System.out.println("Doctor not found");
@@ -65,7 +64,7 @@ public class EnterScreenController {
             Utils.loadScreen("DoctorMainScreen");
         }
 
-        if (checkBoxIsPatient.isSelected()) {
+        else if (checkBoxIsPatient.isSelected()) {
             Patient patient = DatabaseHandler.getPatient(login, password);
             if (patient == null) {
                 System.out.println("Patient not found");

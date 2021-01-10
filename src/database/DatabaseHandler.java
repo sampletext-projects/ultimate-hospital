@@ -207,6 +207,18 @@ public class DatabaseHandler {
 
     }
 
+    public static void updatePatient(Patient patient) {
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(String.format("UPDATE %s SET numKart = ? WHERE id = ?", Const.PATIENT_TABLE));
+            statement.setString(1, patient.getNumKart());
+            statement.setString(2, patient.getId());
+            statement.execute();
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
     public static void updatePatient(String numKart, String id) {
         try {
             PreparedStatement statement = getConnection().prepareStatement("UPDATE patient SET numKart = ? WHERE id = ?");

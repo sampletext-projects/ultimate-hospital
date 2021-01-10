@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import models.Patient;
+import utils.Utils;
 
 import java.util.List;
 
@@ -19,13 +20,13 @@ public class ShowPatientsScreenController {
     private TableView<Patient> tableViewPatients;
 
     @FXML
-    private Button addButton;
+    private Button buttonAdd;
 
     @FXML
-    private Button deleteButton;
+    private Button buttonDelete;
 
     @FXML
-    private Button upButton;
+    private Button buttonUpdate;
 
     @FXML
     private TableColumn<Patient, String> id;
@@ -49,7 +50,7 @@ public class ShowPatientsScreenController {
     private TableColumn<Patient, String> time;
 
     @FXML
-    private TextField textFieldid;
+    private TextField textFieldId;
 
     @FXML
     private TextField textFieldName;
@@ -85,7 +86,7 @@ public class ShowPatientsScreenController {
         tableViewPatients.refresh();
     }
 
-    public void Add_patient(ActionEvent actionEvent) {
+    public void onButtonAddClick(ActionEvent actionEvent) {
         String name = textFieldName.getText();
         String login = textFieldLogin.getText();
         String password = textFieldPass.getText();
@@ -104,8 +105,8 @@ public class ShowPatientsScreenController {
         tableViewPatients.refresh();
     }
 
-    public void Delete_patient(ActionEvent actionEvent) {
-        String id = textFieldid.getText();
+    public void onButtonDeleteClick(ActionEvent actionEvent) {
+        String id = textFieldId.getText();
         DatabaseHandler.removePatient(id);
 
         List<Patient> patients = DatabaseHandler.getPatients();
@@ -115,14 +116,18 @@ public class ShowPatientsScreenController {
 
     }
 
-    public void Edit_patient(ActionEvent actionEvent) {
+    public void onButtonEditClick(ActionEvent actionEvent) {
+        int selectedIndex = tableViewPatients.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            Utils.alertAndWait("Error", "No rows selected", "Please select patient to edit");
+            return;
+        }
+
+        Patient patient = tableViewPatients.getSelectionModel().getSelectedItem();
         String numKart = textFieldCard.getText();
-        String id = textFieldid.getText();
-        DatabaseHandler.updatePatient(numKart, id);
+        patient.setNumKart(numKart);
 
-        List<Patient> patients = DatabaseHandler.getPatients();
-
-        tableViewPatients.setItems(FXCollections.observableArrayList(patients));
+        DatabaseHandler.updatePatient(patient);
         tableViewPatients.refresh();
     }
 }
