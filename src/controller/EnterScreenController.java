@@ -1,6 +1,5 @@
 package controller;
 
-
 import database.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,8 +50,10 @@ public class EnterScreenController {
             // Logined Admin
 
             Utils.loadScreen("AdminMainScreen");
+            return;
         }
-        else if (checkBoxIsDoctor.isSelected()) {
+
+        if (checkBoxIsDoctor.isSelected()) {
             Doctor doctor = DatabaseHandler.getDoctor(login, password);
             if (doctor == null) {
                 System.out.println("Doctor not found");
@@ -62,9 +63,10 @@ public class EnterScreenController {
             // Logined Doctor
 
             Utils.loadScreen("DoctorMainScreen");
+            return;
         }
 
-        else if (checkBoxIsPatient.isSelected()) {
+        if (checkBoxIsPatient.isSelected()) {
             Patient patient = DatabaseHandler.getPatient(login, password);
             if (patient == null) {
                 System.out.println("Patient not found");
@@ -74,9 +76,9 @@ public class EnterScreenController {
             // Logined Patient
 
             Utils.loadScreen("PatientMainScreen");
+            return;
         }
     }
-
 
     public void onButtonBackClick(ActionEvent actionEvent) {
         Utils.backScreen();

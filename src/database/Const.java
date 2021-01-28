@@ -23,5 +23,4 @@ public class Const {
     public static final String PATIENT_NUMKART = "numKart";
     public static final String PATIENT_DATA = "data";
     public static final String PATIENT_TIME = "time";
-
 }

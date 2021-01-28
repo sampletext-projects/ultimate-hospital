@@ -23,19 +23,19 @@ public class DoctorMainScreenController {
     private TableColumn<Patient, String> tableColumnName;
 
     @FXML
-    private TableColumn<Patient, String> card;
+    private TableColumn<Patient, String> tableColumnCard;
 
     @FXML
-    private TableColumn<Patient, String> time;
+    private TableColumn<Patient, String> tableColumnTime;
 
     @FXML
-    private TableColumn<Patient, String> data;
+    private TableColumn<Patient, String> tableColumnData;
 
     @FXML
     private TextArea textAreaCard;
 
     @FXML
-    private Button buttonShow;
+    private Button buttonSee;
 
     @FXML
     private Button buttonSave;
@@ -43,33 +43,25 @@ public class DoctorMainScreenController {
     @FXML
     public void initialize() {
         tableColumnName.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
-        card.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNumKart()));
-        time.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
-        data.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
+        tableColumnCard.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNumKart()));
+        tableColumnTime.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
+        tableColumnData.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
 
         List<Patient> patients = DatabaseHandler.getPatients();
 
         tableViewTime.setItems(FXCollections.observableArrayList(patients));
         tableViewTime.refresh();
-
-        FileUtils.writeFile("src/data.txt", "192.168.1.1");
-    }
-
-    public void onButtonSaveClick(ActionEvent actionEvent) {
-
-        String text = textAreaCard.getText();
-        FileUtils.writeFile("src/card.txt", text);
-
-        for (int i = 0; i < 10; i++) {
-        }
-
-        switch ("") {
-        }
     }
 
     public void onButtonShowClick(ActionEvent actionEvent) {
         String text = FileUtils.readFile("src/card.txt");
         textAreaCard.setText(text);
+
+    }
+
+    public void onButtonSaveClick(ActionEvent actionEvent) {
+        String text = textAreaCard.getText();
+        FileUtils.writeFile("src/card.txt", text);
     }
 }
 

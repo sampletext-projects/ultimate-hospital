@@ -1,8 +1,5 @@
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import database.DatabaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import models.Doctor;
+import utils.FileUtils;
 
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class PatientMainScreenController {
     private TableView<Doctor> tableViewDoctors;
 
     @FXML
-    private TableColumn<Doctor, String> name;
+    private TableColumn<Doctor, String> tableColumnName;
 
     @FXML
-    private TableColumn<Doctor, String> data;
+    private TableColumn<Doctor, String> tableColumnData;
 
     @FXML
-    private TableColumn<Doctor, String> time;
+    private TableColumn<Doctor, String> tableColumnTime;
 
     @FXML
     private TextField textFieldData;
@@ -35,10 +36,10 @@ public class PatientMainScreenController {
     private TextField textFieldTime;
 
     @FXML
-    private Button UpButton;
+    private Button buttonUpdate;
 
     @FXML
-    private Button cardButton;
+    private Button buttonCard;
 
     @FXML
     private TextArea textAreaCard;
@@ -48,9 +49,9 @@ public class PatientMainScreenController {
 
     @FXML
     public void initialize() {
-        name.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
-        time.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
-        data.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
+        tableColumnName.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
+        tableColumnTime.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
+        tableColumnData.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
 
         List<Doctor> doctors = DatabaseHandler.getDoctors();
 
@@ -58,17 +59,17 @@ public class PatientMainScreenController {
         tableViewDoctors.refresh();
     }
 
-    public void Up_Me(ActionEvent actionEvent) {
+    public void upMe(ActionEvent actionEvent) {
         String password = textFieldPass.getText();
         String data = textFieldData.getText();
         String time = textFieldTime.getText();
         DatabaseHandler.updatePatients(data, time, password);
-
     }
 
 
-    public void Open(ActionEvent actionEvent) {
-
+    public void open(ActionEvent actionEvent) {
+        String text = FileUtils.readFile("src/card.txt");
+        textAreaCard.setText(text);
     }
 }
 

@@ -80,13 +80,13 @@ public class ShowDoctorsScreenController {
         tableViewDoctors.refresh();
     }
 
-    public void Add_doctors(ActionEvent actionEvent) {
+    public void addDoctors(ActionEvent actionEvent) {
         String name = txt_name.getText();
         String login = txt_login.getText();
         String password = txt_pass.getText();
         String data = txt_data.getText();
         String time = txt_time.getText();
-
+        
         Doctor d = new Doctor();
         d.setLogin(login);
         d.setName(name);
@@ -101,7 +101,7 @@ public class ShowDoctorsScreenController {
         tableViewDoctors.refresh();
     }
 
-    public void Delete_doctors(ActionEvent actionEvent) {
+    public void deleteDoctors(ActionEvent actionEvent) {
         String id = txt_id.getText();
         DatabaseHandler.removeDoctor(id);
 
@@ -112,7 +112,7 @@ public class ShowDoctorsScreenController {
 
     }
 
-    public void Edit_doctors(ActionEvent actionEvent) {
+    public void editDoctors(ActionEvent actionEvent) {
         String data = txt_data.getText();
         String time = txt_time.getText();
         String id = txt_id.getText();

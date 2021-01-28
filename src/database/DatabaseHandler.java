@@ -18,7 +18,11 @@ public class DatabaseHandler {
     private static Connection connection;
 
     private static Connection getConnection() throws ClassNotFoundException, SQLException {
-        String connectionString = String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", Configs.dbHost, Configs.dbPort, Configs.dbName);
+        String connectionString = String.format(
+                "jdbc:mysql://%s:%s/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                Configs.dbHost,
+                Configs.dbPort,
+                Configs.dbName);
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection(connectionString, Configs.dbUser, Configs.dbPass);
         return connection;
@@ -149,15 +153,6 @@ public class DatabaseHandler {
         }
     }
 
-    public static void removeAdmin(Admin admin) {
-
-    }
-
-    public static void updateAdmin(Admin admin) {
-
-    }
-
-
     public static void addPatient(Patient patient) {
         try {
             PreparedStatement statement = getConnection().prepareStatement(
@@ -200,18 +195,6 @@ public class DatabaseHandler {
         try {
             PreparedStatement statement = getConnection().prepareStatement("DELETE FROM patient WHERE id = ?");
             statement.setString(1, id);
-            statement.execute();
-        } catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
-        }
-
-    }
-
-    public static void updatePatient(Patient patient) {
-        try {
-            PreparedStatement statement = getConnection().prepareStatement(String.format("UPDATE %s SET numKart = ? WHERE id = ?", Const.PATIENT_TABLE));
-            statement.setString(1, patient.getNumKart());
-            statement.setString(2, patient.getId());
             statement.execute();
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -304,6 +287,5 @@ public class DatabaseHandler {
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
-
     }
 }

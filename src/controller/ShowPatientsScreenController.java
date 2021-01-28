@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import models.Patient;
-import utils.Utils;
 
 import java.util.List;
 
@@ -29,25 +28,25 @@ public class ShowPatientsScreenController {
     private Button buttonUpdate;
 
     @FXML
-    private TableColumn<Patient, String> id;
+    private TableColumn<Patient, String> tableColumnId;
 
     @FXML
-    private TableColumn<Patient, String> name;
+    private TableColumn<Patient, String> tableColumnName;
 
     @FXML
-    private TableColumn<Patient, String> login;
+    private TableColumn<Patient, String> tableColumnLogin;
 
     @FXML
-    private TableColumn<Patient, String> pass;
+    private TableColumn<Patient, String> tableColumnPassword;
 
     @FXML
-    private TableColumn<Patient, String> card;
+    private TableColumn<Patient, String> tableColumnCard;
 
     @FXML
-    private TableColumn<Patient, String> data;
+    private TableColumn<Patient, String> tableColumnData;
 
     @FXML
-    private TableColumn<Patient, String> time;
+    private TableColumn<Patient, String> tableColumnTime;
 
     @FXML
     private TextField textFieldId;
@@ -72,13 +71,13 @@ public class ShowPatientsScreenController {
 
     @FXML
     public void initialize() {
-        id.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getId()));
-        name.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
-        login.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLogin()));
-        pass.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPass()));
-        card.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNumKart()));
-        time.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
-        data.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
+        tableColumnId.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getId()));
+        tableColumnName.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
+        tableColumnLogin.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLogin()));
+        tableColumnPassword.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPass()));
+        tableColumnCard.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNumKart()));
+        tableColumnTime.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getTime()));
+        tableColumnData.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getData()));
 
         List<Patient> patients = DatabaseHandler.getPatients();
 
@@ -86,7 +85,7 @@ public class ShowPatientsScreenController {
         tableViewPatients.refresh();
     }
 
-    public void onButtonAddClick(ActionEvent actionEvent) {
+    public void addPatient(ActionEvent actionEvent) {
         String name = textFieldName.getText();
         String login = textFieldLogin.getText();
         String password = textFieldPass.getText();
@@ -105,7 +104,7 @@ public class ShowPatientsScreenController {
         tableViewPatients.refresh();
     }
 
-    public void onButtonDeleteClick(ActionEvent actionEvent) {
+    public void deletePatient(ActionEvent actionEvent) {
         String id = textFieldId.getText();
         DatabaseHandler.removePatient(id);
 
@@ -116,18 +115,14 @@ public class ShowPatientsScreenController {
 
     }
 
-    public void onButtonEditClick(ActionEvent actionEvent) {
-        int selectedIndex = tableViewPatients.getSelectionModel().getSelectedIndex();
-        if (selectedIndex == -1) {
-            Utils.alertAndWait("Error", "No rows selected", "Please select patient to edit");
-            return;
-        }
-
-        Patient patient = tableViewPatients.getSelectionModel().getSelectedItem();
+    public void editPatient(ActionEvent actionEvent) {
         String numKart = textFieldCard.getText();
-        patient.setNumKart(numKart);
+        String id = textFieldId.getText();
+        DatabaseHandler.updatePatient(numKart, id);
 
-        DatabaseHandler.updatePatient(patient);
+        List<Patient> patients = DatabaseHandler.getPatients();
+
+        tableViewPatients.setItems(FXCollections.observableArrayList(patients));
         tableViewPatients.refresh();
     }
 }
