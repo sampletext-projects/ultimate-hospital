@@ -26,6 +26,10 @@ public class User {
         return (T) instance;
     }
 
+    public static void setLogined(User user) {
+        instance = user;
+    }
+
     public String getId() {
         return id;
     }

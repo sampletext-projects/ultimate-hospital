@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import models.Doctor;
 import models.Patient;
 import utils.FileUtils;
+import utils.Utils;
 
 import java.util.List;
 
@@ -76,8 +77,13 @@ public class PatientMainScreenController {
 
 
     public void open(ActionEvent actionEvent) {
-        String text = FileUtils.readFile("src/card.txt");
-        textAreaCard.setText(text);
+        try {
+            String text = FileUtils.readFile("src/card.txt");
+            textAreaCard.setText(text);
+        } catch (Exception ignored) {
+            Utils.alertAndWait("Ошибка", "Операция не выполнена", "Карта пациента не существует");
+        }
+
     }
 }
 

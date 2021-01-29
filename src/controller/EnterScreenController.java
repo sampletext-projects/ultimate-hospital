@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import models.Admin;
 import models.Doctor;
 import models.Patient;
+import models.User;
 import utils.Utils;
 
 public class EnterScreenController {
@@ -48,6 +49,7 @@ public class EnterScreenController {
             }
 
             // Logined Admin
+            User.setLogined(admin);
 
             Utils.loadScreen("AdminMainScreen");
             return;
@@ -61,6 +63,7 @@ public class EnterScreenController {
             }
 
             // Logined Doctor
+            User.setLogined(doctor);
 
             Utils.loadScreen("DoctorMainScreen");
             return;
@@ -74,6 +77,7 @@ public class EnterScreenController {
             }
 
             // Logined Patient
+            User.setLogined(patient);
 
             Utils.loadScreen("PatientMainScreen");
             return;

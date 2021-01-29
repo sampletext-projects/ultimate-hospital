@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import models.Patient;
 import utils.FileUtils;
+import utils.Utils;
 
 import java.util.List;
 
@@ -54,8 +55,12 @@ public class DoctorMainScreenController {
     }
 
     public void onButtonShowClick(ActionEvent actionEvent) {
-        String text = FileUtils.readFile("src/card.txt");
-        textAreaCard.setText(text);
+        try {
+            String text = FileUtils.readFile("src/card.txt");
+            textAreaCard.setText(text);
+        } catch (Exception ignored) {
+            Utils.alertAndWait("Ошибка", "Операция не выполнена", "Карта пациента не существует");
+        }
 
     }
 
