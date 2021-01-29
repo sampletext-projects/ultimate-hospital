@@ -36,14 +36,14 @@ public class EnterScreenController {
         String password = textFieldPassword.getText().trim();
 
         if (login.isEmpty() || password.isEmpty()) {
-            System.out.println("login or password is empty");
+            Utils.alertAndWait("Ошибка", "Операция не выполнена", "Одно из полей не заполнено");
             return;
         }
 
         if (checkBoxIsAdmin.isSelected()) {
             Admin admin = DatabaseHandler.getAdmin(login, password);
             if (admin == null) {
-                System.out.println("Admin not found");
+                Utils.alertAndWait("Ошибка", "Операция не выполнена", "Админ не найден");
                 return;
             }
 
@@ -56,7 +56,7 @@ public class EnterScreenController {
         if (checkBoxIsDoctor.isSelected()) {
             Doctor doctor = DatabaseHandler.getDoctor(login, password);
             if (doctor == null) {
-                System.out.println("Doctor not found");
+                Utils.alertAndWait("Ошибка", "Операция не выполнена", "Доктор не найден");
                 return;
             }
 
@@ -67,9 +67,9 @@ public class EnterScreenController {
         }
 
         if (checkBoxIsPatient.isSelected()) {
-            Patient patient = DatabaseHandler.getPatient(login, password);
+            Patient patient = DatabaseHandler.getPatientByLoginAndPassword(login, password);
             if (patient == null) {
-                System.out.println("Patient not found");
+                Utils.alertAndWait("Ошибка", "Операция не выполнена", "Пациент не найден");
                 return;
             }
 

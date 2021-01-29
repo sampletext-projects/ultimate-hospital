@@ -4,19 +4,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class User {
+
+    private static User instance;
+
     private String id;
     private String name;
     private String login;
-    private String pass;
+    private String password;
 
     public User(String id, String name, String login, String pass) {
         this.id = id;
         this.name = name;
         this.login = login;
-        this.pass = pass;
+        this.password = pass;
     }
 
     public User() {
+    }
+
+    public static <T extends User> T getLogined() {
+        return (T) instance;
     }
 
     public String getId() {
@@ -43,20 +50,20 @@ public class User {
         this.login = login;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void readFromResultSet(ResultSet resultSet){
+    public void readFromResultSet(ResultSet resultSet) {
         try {
             this.setId(resultSet.getString("id"));
             this.setName(resultSet.getString("name"));
             this.setLogin(resultSet.getString("login"));
-            this.setPass(resultSet.getString("pass"));
+            this.setPassword(resultSet.getString("password"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

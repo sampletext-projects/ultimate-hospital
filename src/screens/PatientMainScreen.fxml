@@ -18,7 +18,7 @@
       </TableView>
       <TextField fx:id="textFieldData" layoutX="14.0" layoutY="63.0" promptText="Дата" />
       <TextField fx:id="textFieldTime" layoutX="14.0" layoutY="103.0" promptText="Время" />
-      <Button fx:id="buttonUpdate" layoutX="247.0" layoutY="23.0" mnemonicParsing="false" onAction="#upMe" prefHeight="80.0" prefWidth="187.0" text="Записаться" />
+      <Button fx:id="buttonUpdate" layoutX="247.0" layoutY="23.0" mnemonicParsing="false" onAction="#updateMe" prefHeight="80.0" prefWidth="187.0" text="Записаться" />
       <Button fx:id="buttonCard" layoutX="14.0" layoutY="195.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="187.0" text="Посмотреть мед.карту" />
       <TextArea fx:id="textAreaCard" layoutX="14.0" layoutY="236.0" prefHeight="334.0" prefWidth="465.0" />
       <TextField fx:id="textFieldPass" layoutX="14.0" layoutY="23.0" promptText="Ваш пароль" />

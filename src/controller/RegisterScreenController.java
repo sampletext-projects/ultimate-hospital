@@ -46,19 +46,19 @@ public class RegisterScreenController {
             Admin a = new Admin();
             a.setLogin(login);
             a.setName(name);
-            a.setPass(password);
+            a.setPassword(password);
             DatabaseHandler.addAdmin(a);
         } else if (checkBoxIsPatient.isSelected()) {
             Patient p = new Patient();
             p.setLogin(login);
             p.setName(name);
-            p.setPass(password);
+            p.setPassword(password);
             DatabaseHandler.addPatient(p);
         } else if (checkBoxIsDoctor.isSelected()) {
             Doctor d = new Doctor();
             d.setLogin(login);
             d.setName(name);
-            d.setPass(password);
+            d.setPassword(password);
             DatabaseHandler.addDoctor(d);
         }
 

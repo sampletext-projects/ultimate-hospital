@@ -24,6 +24,10 @@ public class Patient extends User {
     public Patient() {
     }
 
+    public static Patient getLogined() {
+        return User.getLogined();
+    }
+
     public String getData() {
         return data;
     }

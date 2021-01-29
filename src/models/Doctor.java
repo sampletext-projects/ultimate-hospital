@@ -20,6 +20,10 @@ public class Doctor extends User {
     public Doctor() {
     }
 
+    public static Doctor getLogined() {
+        return User.getLogined();
+    }
+
     public Doctor(String data) {
         this.data = data;
     }

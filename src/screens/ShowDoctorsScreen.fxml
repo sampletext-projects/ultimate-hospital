@@ -17,7 +17,8 @@
                 <Font size="34.0"/>
             </font>
         </Label>
-        <TableView fx:id="tableViewDoctors" layoutX="355.0" layoutY="28.0" prefHeight="600.0" prefWidth="624.0">
+        <TableView fx:id="tableViewDoctors" layoutX="355.0" layoutY="28.0" prefHeight="600.0" prefWidth="624.0"
+                   onMouseClicked="#onTableViewMouseClicked">
             <columns>
                 <TableColumn fx:id="id" prefWidth="56.0" text="id"/>
                 <TableColumn fx:id="name" prefWidth="94.0" text="name"/>
@@ -27,32 +28,33 @@
                 <TableColumn fx:id="data" prefWidth="150.0" text="data"/>
             </columns>
         </TableView>
-        <Button fx:id="addbutton" layoutX="6.0" layoutY="64.0" mnemonicParsing="false" onAction="#addDoctors"
+        <Button fx:id="addbutton" layoutX="6.0" layoutY="64.0" mnemonicParsing="false" onAction="#addDoctor"
                 prefHeight="50.0" prefWidth="213.0" text="Добавить">
             <font>
                 <Font size="37.0"/>
             </font>
         </Button>
-        <Button fx:id="deletebutton" layoutX="6.0" layoutY="158.0" mnemonicParsing="false" onAction="#deleteDoctors"
+        <Button fx:id="deletebutton" layoutX="6.0" layoutY="158.0" mnemonicParsing="false" onAction="#deleteDoctor"
                 prefHeight="80.0" prefWidth="213.0" text="Удалить">
             <font>
                 <Font size="37.0"/>
             </font>
         </Button>
-        <Button fx:id="upbutton" layoutX="4.0" layoutY="248.0" mnemonicParsing="false" onAction="#editDoctors" text="Обновить">
+        <Button fx:id="upbutton" layoutX="4.0" layoutY="248.0" mnemonicParsing="false" onAction="#editDoctor"
+                text="Обновить">
             <font>
                 <Font size="37.0"/>
             </font>
         </Button>
-        <TextField fx:id="txt_id" layoutX="6.0" layoutY="343.0" prefHeight="31.0" prefWidth="320.0" promptText="id"/>
-        <TextField fx:id="txt_name" layoutX="6.0" layoutY="385.0" prefHeight="31.0" prefWidth="320.0" promptText="Имя"/>
-        <TextField fx:id="txt_login" layoutX="6.0" layoutY="428.0" prefHeight="31.0" prefWidth="320.0"
+        <TextField fx:id="textFieldName" layoutX="6.0" layoutY="385.0" prefHeight="31.0" prefWidth="320.0"
+                   promptText="Имя"/>
+        <TextField fx:id="textFieldLogin" layoutX="6.0" layoutY="428.0" prefHeight="31.0" prefWidth="320.0"
                    promptText="Логин"/>
-        <TextField fx:id="txt_pass" layoutX="6.0" layoutY="475.0" prefHeight="31.0" prefWidth="320.0"
+        <TextField fx:id="textFieldPassword" layoutX="6.0" layoutY="475.0" prefHeight="31.0" prefWidth="320.0"
                    promptText="Пароль"/>
-        <TextField fx:id="txt_data" layoutX="6.0" layoutY="521.0" prefHeight="31.0" prefWidth="320.0"
+        <TextField fx:id="textFieldData" layoutX="6.0" layoutY="521.0" prefHeight="31.0" prefWidth="320.0"
                    promptText="Дата"/>
-        <TextField fx:id="txt_time" layoutX="6.0" layoutY="568.0" prefHeight="31.0" prefWidth="320.0"
+        <TextField fx:id="textFieldTime" layoutX="6.0" layoutY="568.0" prefHeight="31.0" prefWidth="320.0"
                    promptText="Время"/>
     </children>
 </AnchorPane>

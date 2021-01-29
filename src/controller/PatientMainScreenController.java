@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import models.Doctor;
+import models.Patient;
 import utils.FileUtils;
 
 import java.util.List;
@@ -57,13 +58,20 @@ public class PatientMainScreenController {
 
         tableViewDoctors.setItems(FXCollections.observableArrayList(doctors));
         tableViewDoctors.refresh();
+
+        Patient logined = Patient.getLogined();
+        textFieldPass.setText(logined.getPassword());
+        textFieldData.setText(logined.getData());
+        textFieldTime.setText(logined.getTime());
+
     }
 
-    public void upMe(ActionEvent actionEvent) {
-        String password = textFieldPass.getText();
-        String data = textFieldData.getText();
-        String time = textFieldTime.getText();
-        DatabaseHandler.updatePatients(data, time, password);
+    public void updateMe(ActionEvent actionEvent) {
+        Patient logined = Patient.getLogined();
+        logined.setPassword(textFieldPass.getText());
+        logined.setData(textFieldData.getText());
+        logined.setTime(textFieldTime.getText());
+        DatabaseHandler.updatePatient(logined);
     }
 
 

@@ -8,33 +8,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="655.0" minWidth="995.0" prefHeight="655.0" prefWidth="995.0" style="-fx-background-color: #6699FF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowPatientsScreenController">
-   <children>
-      <Label layoutX="21.0" layoutY="14.0" text="Просмотр пациентов">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
-      <Button fx:id="buttonAdd" layoutX="21.0" layoutY="61.0" mnemonicParsing="false" onAction="#addPatient" prefHeight="31.0" prefWidth="300.0" text="Добавить" />
-      <Button fx:id="buttonDelete" layoutX="21.0" layoutY="103.0" mnemonicParsing="false" onAction="#deletePatient" prefHeight="31.0" prefWidth="300.0" text="Удалить" />
-      <Button fx:id="buttonUpdate" layoutX="21.0" layoutY="145.0" mnemonicParsing="false" onAction="#editPatient" prefHeight="31.0" prefWidth="300.0" text="Обновить" />
-      <TableView fx:id="tableViewPatients" layoutX="383.0" layoutY="19.0" prefHeight="628.0" prefWidth="607.0">
-        <columns>
-          <TableColumn fx:id="tableColumnId" prefWidth="43.0" text="id" />
-          <TableColumn fx:id="tableColumnName" prefWidth="74.0" text="name" />
-            <TableColumn fx:id="tableColumnLogin" prefWidth="108.0" text="login" />
-            <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" text="pass" />
-            <TableColumn fx:id="tableColumnCard" prefWidth="98.0" text="numKart" />
-            <TableColumn fx:id="tableColumnData" prefWidth="99.0" text="data" />
-            <TableColumn fx:id="tableColumnTime" prefWidth="109.0" text="time" />
-        </columns>
-      </TableView>
-      <TextField fx:id="textFieldId" layoutX="21.0" layoutY="194.0" prefHeight="31.0" prefWidth="300.0" promptText="id" />
-      <TextField fx:id="textFieldName" layoutX="21.0" layoutY="237.0" prefHeight="31.0" prefWidth="300.0" promptText="Имя" />
-      <TextField fx:id="textFieldLogin" layoutX="21.0" layoutY="286.0" prefHeight="31.0" prefWidth="300.0" promptText="Логин" />
-      <TextField fx:id="textFieldPass" layoutX="21.0" layoutY="328.0" prefHeight="31.0" prefWidth="300.0" promptText="Пароль" />
-      <TextField fx:id="textFieldCard" layoutX="21.0" layoutY="372.0" prefHeight="31.0" prefWidth="300.0" promptText="Номер карты" />
-      <TextField fx:id="textFieldData" layoutX="21.0" layoutY="418.0" prefHeight="31.0" prefWidth="300.0" promptText="Дата" />
-      <TextField fx:id="textFieldTime" layoutX="21.0" layoutY="461.0" prefHeight="31.0" prefWidth="300.0" promptText="Время" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="655.0" minWidth="995.0" prefHeight="655.0"
+            prefWidth="995.0" style="-fx-background-color: #6699FF;" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowPatientsScreenController">
+    <children>
+        <Label layoutX="21.0" layoutY="14.0" text="Просмотр пациентов">
+            <font>
+                <Font size="32.0"/>
+            </font>
+        </Label>
+        <Button fx:id="buttonAdd" layoutX="21.0" layoutY="61.0" mnemonicParsing="false" onAction="#addPatient"
+                prefHeight="31.0" prefWidth="300.0" text="Добавить"/>
+        <Button fx:id="buttonDelete" layoutX="21.0" layoutY="103.0" mnemonicParsing="false" onAction="#deletePatient"
+                prefHeight="31.0" prefWidth="300.0" text="Удалить"/>
+        <Button fx:id="buttonUpdate" layoutX="21.0" layoutY="145.0" mnemonicParsing="false" onAction="#editPatient"
+                prefHeight="31.0" prefWidth="300.0" text="Обновить"/>
+        <TableView fx:id="tableViewPatients" layoutX="383.0" layoutY="19.0" prefHeight="628.0" prefWidth="607.0"
+                   onMouseClicked="#onTableViewMouseClicked">
+            <columns>
+                <TableColumn fx:id="tableColumnId" prefWidth="43.0" text="id"/>
+                <TableColumn fx:id="tableColumnName" prefWidth="74.0" text="name"/>
+                <TableColumn fx:id="tableColumnLogin" prefWidth="108.0" text="login"/>
+                <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" text="pass"/>
+                <TableColumn fx:id="tableColumnCard" prefWidth="98.0" text="numKart"/>
+                <TableColumn fx:id="tableColumnData" prefWidth="99.0" text="data"/>
+                <TableColumn fx:id="tableColumnTime" prefWidth="109.0" text="time"/>
+            </columns>
+        </TableView>
+        <TextField fx:id="textFieldName" layoutX="21.0" layoutY="237.0" prefHeight="31.0" prefWidth="300.0"
+                   promptText="Имя"/>
+        <TextField fx:id="textFieldLogin" layoutX="21.0" layoutY="286.0" prefHeight="31.0" prefWidth="300.0"
+                   promptText="Логин"/>
+        <TextField fx:id="textFieldPassword" layoutX="21.0" layoutY="328.0" prefHeight="31.0" prefWidth="300.0"
+                   promptText="Пароль"/>
+        <TextField fx:id="textFieldCard" layoutX="21.0" layoutY="372.0" prefHeight="31.0" prefWidth="300.0"
+                   promptText="Номер карты"/>
+        <TextField fx:id="textFieldData" layoutX="21.0" layoutY="418.0" prefHeight="31.0" prefWidth="300.0"
+                   promptText="Дата"/>
+        <TextField fx:id="textFieldTime" layoutX="21.0" layoutY="461.0" prefHeight="31.0" prefWidth="300.0"
+                   promptText="Время"/>
+    </children>
 </AnchorPane>
